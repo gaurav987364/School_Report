@@ -1,7 +1,7 @@
 import { SignedIn, UserButton, useUser } from "@clerk/clerk-react";
 import { FaHome, FaList } from "react-icons/fa";
 import { IoClose } from "react-icons/io5";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const SideBar = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
   // const user = true;
@@ -13,7 +13,7 @@ const SideBar = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) 
     >
       {/* Mobile header */}
       <div className="flex items-center justify-between px-4 h-[60px] border-b border-gray-200 dark:border-gray-700 lg:hidden">
-        <span className="font-semibold text-lg dark:text-white">University</span>
+        <span className="font-semibold text-lg dark:text-white">Arcadia University</span>
         <button onClick={onClose} className="text-xl text-gray-700 dark:text-white">
           <IoClose />
         </button>
@@ -24,8 +24,8 @@ const SideBar = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) 
           <NavLink
             to="/"
             className={({ isActive }) =>
-              `flex items-center gap-3 p-4 rounded-lg text-sm font-medium transition hover:bg-purple-100 dark:hover:bg-purple-900
-              ${isActive ? "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-white" : "text-gray-700 dark:text-gray-300"}`
+              `flex items-center gap-3 p-4 rounded-lg text-sm font-medium transition hover:bg-blue-100 dark:hover:bg-blue-900
+              ${isActive ? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-white" : "text-gray-700 dark:text-gray-300"}`
             }
           >
             <FaHome size={22}/>
@@ -35,8 +35,8 @@ const SideBar = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) 
           <NavLink
             to="/applications"
             className={({ isActive }) =>
-              `flex items-center gap-3 p-4 rounded-lg text-sm font-medium transition hover:bg-purple-100 dark:hover:bg-purple-900
-              ${isActive ? "bg-purple-100 text-purple-700 dark:bg-purple-900 dark:text-white" : "text-gray-700 dark:text-gray-300"}`
+              `flex items-center gap-3 p-4 rounded-lg text-sm font-medium transition hover:bg-blue-100 dark:hover:bg-blue-900
+              ${isActive ? "bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-white" : "text-gray-700 dark:text-gray-300"}`
             }
           >
             <FaList size={22}/>
@@ -46,8 +46,8 @@ const SideBar = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) 
 
         <div className="px-2 pb-4">
           {user ? (
-            <div className="flex items-center space-x-3 px-1 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 dark:bg-slate-900 dark:hover:bg-slate-950 transition-all duration-300 cursor-pointer">
-              <div className="text-2xl w-9 h-9 rounded-full text-purple-500 dark:text-purple-400">
+            <Link to="/profile" className="flex items-center space-x-3 px-1 py-2 rounded-lg bg-gray-200 hover:bg-gray-300 dark:bg-slate-900 dark:hover:bg-slate-950 transition-all duration-300 cursor-pointer">
+              <div className="text-2xl w-9 h-9 rounded-full text-blue-500 dark:text-blue-400">
                 <img src={user?.imageUrl || ""} alt="user" className=" w-full h-full object-cover" />
               </div>
               <div className={`flex flex-col gap-1 ${isOpen ? 'inline' : 'hidden'} lg:hidden xl:inline`}>
@@ -58,7 +58,7 @@ const SideBar = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) 
                   {user?.emailAddresses[0].emailAddress || "abc@gmail.com"}
                 </span>
               </div>
-            </div>
+            </Link>
           ) : (
             <div className="space-y-2">
                 <SignedIn>
