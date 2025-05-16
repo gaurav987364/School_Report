@@ -30,3 +30,15 @@ export const fetchApplicationDetails = async (id:string) => {
         console.error('API Error:', error);
       }
 };
+
+
+// Fetch single application by ID
+export const fetchApplicationDetailsById = async (id: string) => {
+  try {
+    const response = await api.get(`/api/applications/${id}`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching application details:', error);
+    throw error; // Re-throw for error handling in components
+  }
+};

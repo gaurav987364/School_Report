@@ -6,6 +6,7 @@ import ApplicationDetails from "./pages/ApplicationsDetails";
 import { ThemeProvider } from "./context/ThemeContext";
 import { RedirectToSignIn, SignedIn, SignedOut, SignIn, SignUp } from "@clerk/clerk-react";
 import Profile from "./pages/Profile";
+import ApplicationeditPage from "./pages/ApplicationeditPage";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
           <Route path="/" element={<AdmissionDashboard />} />
           <Route path="/applications" element={<ApplicationsList />} />
           <Route path="/applications/:id" element={<ApplicationDetails />} />
+          <Route path="/edit/:id" element={<ApplicationeditPage />} />
           <Route path="/profile" element={<Profile/>}/>
         </Route>
 

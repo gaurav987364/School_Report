@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { FaSearch, FaEye, FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import { FaSearch, FaEye, FaArrowLeft, FaArrowRight, FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { api } from "../api/mockdata";
 
@@ -122,12 +122,18 @@ const ApplicationsList = () => {
                     {statusMap[app.status]}
                   </span>
                 </td>
-                <td className="p-4">
+                <td className="p-4 flex items-center gap-5">
                   <Link 
                     to={`/applications/${app.id}`} 
                     className="flex items-center gap-2 text-sm text-indigo-600 dark:text-indigo-400 hover:underline"
                   >
                     <FaEye /> View
+                  </Link>
+                  <Link 
+                    to={`/edit/${app.id}`} 
+                    className="flex items-center gap-2 text-sm text-indigo-600 dark:text-indigo-400 hover:underline"
+                  >
+                    <FaEdit /> Edit
                   </Link>
                 </td>
               </tr>

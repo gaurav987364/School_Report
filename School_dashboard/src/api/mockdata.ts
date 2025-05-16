@@ -80,16 +80,26 @@ mock.onGet(/\/applications(\?page=(\d+)&pageSize=(\d+))?/).reply(config => {
   }];
 });
 
+// mockdata.ts 
 mock.onGet(/\/api\/applications\/.+/).reply(config => {
   const id = config.url?.split('/').pop();
   const application = applications.find(app => app.id === id);
-  
-  console.log('[Mock API] Requested:', id);
-  console.log('[Mock API] Found:', application?.id);
-
   return application 
     ? [200, application, { 'Cache-Control': 'no-store' }]
     : [404, { error: 'Not found' }];
+});
+
+
+// endpoint for updated data
+mock.onPut(/\/api\/applications\/.+/).reply(config => {
+  const id = config.url?.split('/').pop();
+  const updatedData = JSON.parse(config.data);
+  const index = applications.findIndex(app => app.id === id);
+  
+  if (index === -1) return [404, { error: 'Not found' }];
+  
+  applications[index] = { ...applications[index], ...updatedData };
+  return [200, applications[index]];
 });
 
 // Export axios instance for direct use in components
